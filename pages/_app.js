@@ -12,7 +12,7 @@ function MyApp({ Component, pageProps}) {
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossOrigin="anonymous"
       ></Script>
-      <div className="container">
+      <div>
         <Component {...pageProps} />
       </div>
     </Provider>
