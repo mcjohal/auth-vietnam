@@ -26,4 +26,13 @@ export default NextAuth({
     signIn:'/login'
   },
   database:process.env.DATABASE_URL,
+  callbacks:{
+    //session variable has to be placed before user if this is going to work.
+    session: async(session, user)=> {
+       console.log({session,user})
+      session.userId = user.sub
+   
+      return Promise.resolve(session);
+    }
+  }
 })

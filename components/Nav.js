@@ -18,7 +18,7 @@ const Nav = () => {
           <Image src={logo} alt="logo" width={30} height={30} />
           <span className="ms-1">NextAuth</span>
         </div>
-
+      
         <div className="d-flex align-items-center">
           <img
             src={session.user.image}
@@ -31,6 +31,7 @@ const Nav = () => {
           <h5 className="me-3 ms-1 mt-1 text-danger text-capitalize">
             {session.user.name}
           </h5>
+      
 
           <button className="btn btn-outline-danger" onClick={() => signOut()}>
             Logout
