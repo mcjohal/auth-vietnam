@@ -1,10 +1,10 @@
 import { useEffect } from 'react';
-import {providers,getSession} from 'next-auth/client';
-import BtnLogin from '../components/BtnLogin';
+import {providers,getSession,csrfToken} from 'next-auth/client';
+import OAuth from '../components/auth/OAuth';
 import Router from 'next/router';
 
-const Login = ( {providers,session}) => {
-    console.log('provider and session:' ,{providers,session})
+const Login = ({ providers, session, csrfToken }) => {
+    console.log('csrfToken:' ,{csrfToken})
 
     useEffect(() => {
       if(session) return Router.push('/');
@@ -21,28 +21,18 @@ const Login = ( {providers,session}) => {
         style={{color:'555', letterSpacing:'1px'}}>Test Auth</h2>
 
         <p className="text-center">Login with NextAuth</p>
-
-        <BtnLogin
-        provider={providers.google}
-        bgColor="#f2573f"
-        />
-         <BtnLogin
-        provider={providers.facebook}
-        bgColor="#0404be"
-        />
-         <BtnLogin
-        provider={providers.github}
-        bgColor="#444"
-        />
+        <OAuth providers={providers} csrfToken={csrfToken}/>
+       
     </div>
     </div>
   )
 }
 
 Login.getInitialProps = async (context) => {
-    return{
-        providers: await providers(context),
-        session:await getSession(context)
-    }
+    return {
+      providers: await providers(context),
+      session: await getSession(context),
+      csrfToken: await csrfToken(context),
+    };
 }
 export default Login
