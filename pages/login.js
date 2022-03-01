@@ -1,10 +1,14 @@
 import { useEffect } from 'react';
 import {providers,getSession,csrfToken} from 'next-auth/client';
-import OAuth from '../components/auth/OAuth';
 import Router from 'next/router';
 
+import OAuth from '../components/auth/OAuth';
+import Email from '../components/auth/Email';
+import Credentials from '../components/auth/Credentials';
+
+
 const Login = ({ providers, session, csrfToken }) => {
-    console.log('csrfToken:' ,{csrfToken})
+    console.log(providers)
 
     useEffect(() => {
       if(session) return Router.push('/');
@@ -21,18 +25,26 @@ const Login = ({ providers, session, csrfToken }) => {
         style={{color:'555', letterSpacing:'1px'}}>Test Auth</h2>
 
         <p className="text-center">Login with NextAuth</p>
+
+        <div className="text-center"> &diams; or &diams;</div>
+
+        <Credentials providers={providers} csrfToken={csrfToken}/>
         <OAuth providers={providers} csrfToken={csrfToken}/>
+        <Email providers={providers} csrfToken={csrfToken}/>
+       
        
     </div>
     </div>
   )
 }
 
-Login.getInitialProps = async (context) => {
+export async function getServerSideProps (context) {
     return {
-      providers: await providers(context),
-      session: await getSession(context),
-      csrfToken: await csrfToken(context),
+      props:{
+        providers: await providers(context),
+        session: await getSession(context),
+        csrfToken: await csrfToken(context),
+      }
     };
 }
 export default Login
