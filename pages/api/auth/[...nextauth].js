@@ -21,7 +21,7 @@ export default NextAuth({
         
         const user = await Users.findOne({email})
         if(user) return loginUser({email,password})
-        return registrerUser({email,password})
+        return registerUser({email,password})
       }
     }),
     Providers.Google({

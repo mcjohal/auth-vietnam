@@ -16,6 +16,9 @@ export function html({ url, host, email }) {
 
   return `
 <body style="background: ${backgroundColor};">
+<div className="row">
+<div className="col-12 text-center">Welcome to Irrigation Swap</div>
+</div>
   <table width="100%" border="0" cellspacing="0" cellpadding="0">
     <tr>
       <td align="center" style="padding: 10px 0px 20px 0px; font-size: 22px; font-family: Helvetica, Arial, sans-serif; color: ${textColor};">
